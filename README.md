@@ -1,40 +1,54 @@
 # WASSERZEITUNG – Artikel-Embed
 
-Dieses Repository enthält ein selbstständiges HTML-Embed zur Einbindung
-eines redaktionell ausgewählten Artikels (E-Paper) auf externen Websites.
-Die Einbindung erfolgt per iframe.
+Dieses Repository enthält **zwei Einbindungs-Methoden** für einen redaktionell ausgewählten Artikel:
 
-Das Embed ist bewusst schlank gehalten und unabhängig von WordPress,
-Tracking-Skripten oder Drittanbieter-Diensten.
+---
 
-## Einbindung
+## Option 1: iFrame
 
-    <iframe
-      src="https://kaialisa.github.io/wasserzeitung-embed/lwg-embed.html"
-      style="width:100%;border:0;overflow:hidden;display:block;"
-      height="360"
-      loading="lazy"
-      title="WASSERZEITUNG Artikel">
-    </iframe>
+```html
+<iframe
+  src="https://kaialisa.github.io/wasserzeitung-embed/iframe-widget.html"
+  width="320"
+  height="450"
+  style="border:none;max-width:100%;"
+  title="WASSERZEITUNG Artikel">
+</iframe>
+```
 
-## Technische Hinweise
+---
 
-- Das Embed besteht ausschließlich aus HTML und CSS.
-- Es werden keine keine Tracking-Skripte geladen.
-- Cookie-frei, da es von einer separaten statischen Origin ausgeliefert wird.
-- HTTPS ist erforderlich.
-- Die Höhe des iframes kann bei Bedarf angepasst werden.
+## Option 2: JavaScript-Widget
 
-## Hinweis zur Ziel-URL (SSL)
+### Mit unserem Styling:
 
-Langfristig ist vorgesehen, das Embed unter  
-`https://embed.wasserzeitung.info/` bereitzustellen.
+```html
+<div id="wasserzeitung-widget"></div>
+<script src="https://kaialisa.github.io/wasserzeitung-embed/wasserzeitung-widget.js"></script>
+```
 
-Dafür ist ein SSL-Zertifikat erforderlich, das Subdomains abdeckt
-(z. B. Wildcard- oder Multi-Domain-SSL).  
-Das aktuell eingesetzte SSL-Zertifikat sichert ausschließlich die Hauptdomain
-und kann nicht für Subdomains verwendet werden.
+### Ohne Styling (für eigenes Design):
 
-Sobald ein entsprechendes SSL-Zertifikat vorhanden ist,
-kann die Einbindung ohne technische Änderungen am Embed
-auf die Domain `embed.wasserzeitung.info` umgestellt werden.
+```html
+<div id="wasserzeitung-widget"></div>
+<script src="https://kaialisa.github.io/wasserzeitung-embed/wasserzeitung-widget-unstyled.js"></script>
+```
+
+Bei der unstyled-Version können Sie folgende CSS-Klassen stylen:
+- `.wz-newsItem` – Container-Link
+- `.wz-imgWrap` – Bild-Container  
+- `.wz-caption` – Bildunterschrift
+- `.wz-info` – Text-Container
+- `.wz-title` – Überschrift
+- `.wz-excerpt` – Beschreibungstext
+- `.wz-iconMore` – Pfeil-Icon
+
+---
+
+## Artikel aktualisieren
+
+Den angezeigten Artikel ändern Sie in der Datei `featured-article.json`. Beide Methoden aktualisieren sich automatisch.
+
+---
+
+**Hinweis:** Beide Lösungen sind DSGVO-konform (keine Cookies, keine Tracker).
